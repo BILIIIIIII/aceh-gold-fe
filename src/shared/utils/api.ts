@@ -1,8 +1,14 @@
 import { ApiClient } from "../libs/apiClient";
 
-export const api = new ApiClient("http://127.0.0.1:8000", {});
+// 1. Ambil URL dari environment variable
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const apiRealestica = new ApiClient(
-  "https://realesticebe-production.up.railway.app",
-  {}
-);
+// 2. Kasih peringatan kalau URL-nya kosong, biar gampang di-debug
+if (!API_URL) {
+  throw new Error(
+    "Missing NEXT_PUBLIC_API_URL environment variable. Please set it in your .env.local file."
+  );
+}
+
+// 3. Buat instance ApiClient dengan URL yang dinamis
+export const api = new ApiClient(API_URL, {});
