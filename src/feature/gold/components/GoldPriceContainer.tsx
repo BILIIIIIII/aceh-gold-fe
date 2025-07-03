@@ -93,7 +93,7 @@ const GoldPriceContent = ({
   onYearChange: (year: string | null) => void;
   mayamValue: number;
 }) => {
-  const { chartData: allData } = useGolds({ limit: 0 }, null, mayamValue);
+  const { chartData: allData } = useGolds({}, null, mayamValue);
 
   const { chartData, metrics, isError, error } = useGolds(
     { limit: 0 },
