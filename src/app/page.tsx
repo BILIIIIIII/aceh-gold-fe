@@ -80,7 +80,7 @@ export default function LandingPage() {
             dengan mudah!
           </p>
           <div className="flex flex-col items-center space-y-4 md:flex-row md:space-x-4 md:space-y-0 justify-center">
-            <Button variant="outline" className="text-primary" asChild>
+            <Button variant="outline" className="text-primary">
               Coba Sekarang <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <div className="flex flex-col md:flex-row space-y-2 md:space-x-2 md:space-y-0 mt-4 md:mt-0">
