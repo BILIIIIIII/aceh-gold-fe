@@ -45,12 +45,15 @@
 
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Reenie+Beanie&family=Schoolbell&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
+html,
 body {
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: "Plus Jakarta Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+
+  scroll-behavior: smooth;
 }
 
 :root {

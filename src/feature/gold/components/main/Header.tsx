@@ -1,4 +1,3 @@
-// GoldCardHeaderContent.tsx
 "use client";
 
 import { CardTitle } from "@/shared/shadcn-components/ui/card";

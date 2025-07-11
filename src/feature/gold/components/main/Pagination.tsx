@@ -28,14 +28,12 @@ export const GoldPagination = ({
         pagesList.push(i);
       }
     } else {
-      // Tambahkan halaman pertama
       pagesList.push(1);
 
       if (currentPage > 4) {
         pagesList.push("...");
       }
 
-      // Tentukan halaman tengah
       const start = Math.max(2, currentPage - 1);
       const end = Math.min(totalPages - 1, currentPage + 1);
 
@@ -47,7 +45,6 @@ export const GoldPagination = ({
         pagesList.push("...");
       }
 
-      // Tambahkan halaman terakhir
       pagesList.push(totalPages);
     }
 

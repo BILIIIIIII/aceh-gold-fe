@@ -13,7 +13,6 @@ const useGolds = (
   selectedYear: string | null,
   mayam: number = 3.3
 ) => {
-  // Using useSuspenseQuery instead of useQuery
   const {
     data: GoldsResponses,
     isError,
@@ -21,9 +20,7 @@ const useGolds = (
   } = useSuspenseQuery<ApiResponse<Gold[]>>({
     queryKey: ["Golds", params],
     queryFn: () => getGolds(params),
-    // Optional: Add stale time to prevent unnecessary refetches
     staleTime: 5 * 60 * 1000, // 5 minutes
-    // Optional: Add retry configuration
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
   });
@@ -35,7 +32,6 @@ const useGolds = (
       open: parseIDRValue(item.open),
     }));
 
-    // Filter by year if selectedYear is provided
     const filtered = selectedYear
       ? rawData.filter(
           (item) =>
@@ -43,19 +39,16 @@ const useGolds = (
         )
       : rawData;
 
-    // Sort by date
     const sorted = [...filtered].sort(
       (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
     );
 
-    // Transform for chart
     const chartData = sorted.map((item) => ({
       time: item.time,
       close: item.close * mayam,
       open: item.open * mayam,
     }));
 
-    // Calculate metrics only if we have data
     if (chartData.length === 0) {
       return {
         chartData: [],
@@ -100,7 +93,6 @@ const useGolds = (
     metrics: processed.metrics,
     isError,
     error,
-    // Note: useSuspenseQuery doesn't provide isPending/isLoading as it suspends instead
   };
 };
 

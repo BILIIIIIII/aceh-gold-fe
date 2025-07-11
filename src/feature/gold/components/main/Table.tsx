@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Gold } from "../types/gold";
+import { Gold } from "../../types/gold";
 import {
   Table,
   TableBody,
@@ -29,7 +29,6 @@ export default function MainTable({ data = [] }: GoldTableProps) {
     currentPage * itemsPerPage
   );
 
-  // Determine how many items to show based on the "Show All" state
   const displayedData = showAll ? currentData : currentData.slice(0, 25);
 
   const handleToggleShowAll = () => {

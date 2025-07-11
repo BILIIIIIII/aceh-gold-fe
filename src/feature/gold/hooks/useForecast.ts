@@ -19,16 +19,13 @@ const useForecasts = (mayam: number = 3.3) => {
   const processedData = useMemo(() => {
     const rawData = forecastsResponse?.data || [];
 
-    // Proses data mentah menjadi format yang siap untuk chart dengan 3 nilai
     const chartData = rawData.map((item) => ({
       date: item.time,
-      // Kalikan setiap nilai prediksi dengan nilai mayam
       xgboost: item.forecasts.xgboost * mayam,
       lightgbm: item.forecasts.lightgbm * mayam,
       catboost: item.forecasts.catboost * mayam,
     }));
 
-    // Urutkan berdasarkan tanggal untuk memastikan chart tergambar dengan benar
     const sortedChartData = [...chartData].sort(
       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );

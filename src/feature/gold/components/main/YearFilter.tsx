@@ -28,6 +28,7 @@ const BandaYearFilter: React.FC<YearFilterProps> = ({
         <SelectTrigger className="text-xs px-3 py-1">
           <SelectValue placeholder="Select a year" />
         </SelectTrigger>
+
         <SelectContent position="popper">
           <SelectItem value="All">All</SelectItem>
           {years.map((year) => (

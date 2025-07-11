@@ -1,4 +1,3 @@
-// app/Main-aceh/components/MainChart.tsx
 "use client";
 
 import React from "react";
@@ -10,8 +9,8 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import { formatYAxisLabel } from "../lib/utils";
-import { Gold } from "../types/gold";
+import { formatYAxisLabel } from "../../lib/utils";
+import { Gold } from "../../types/gold";
 
 interface MainChartProps {
   data: Gold[];

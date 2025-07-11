@@ -22,6 +22,7 @@ export function PredictionCard({
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
+
       <CardContent>
         {isLoading ? (
           <Skeleton className="h-6 w-24" />

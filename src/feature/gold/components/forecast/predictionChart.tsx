@@ -11,7 +11,6 @@ import {
   Legend,
 } from "recharts";
 
-// Tipe data untuk menampung 3 nilai prediksi
 interface PredictionData {
   date: string;
   xgboost: number;
@@ -23,7 +22,6 @@ interface PredictionChartProps {
   data: PredictionData[];
 }
 
-// Helper untuk format label Y-Axis (misal: 5.750.000 -> 5.75M)
 const formatYAxisLabel = (value: number) => {
   if (value >= 1000000) {
     return `${(value / 1000000).toFixed(1)}M`;
@@ -34,15 +32,11 @@ const formatYAxisLabel = (value: number) => {
   return value.toString();
 };
 
-// Helper untuk format tanggal di X-Axis (misal: 2025-05-01 -> 1/5)
-// Fungsi ini sudah benar untuk format data dari API forecast
 const formatXAxisTick = (dateStr: string) => {
   const date = new Date(dateStr);
-  // Menggunakan toLocaleDateString untuk format yang lebih lokal (misal: 1 Mei)
   return date.toLocaleDateString("id-ID", { day: "numeric", month: "short" });
 };
 
-// Helper untuk format mata uang di Tooltip
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -58,7 +52,6 @@ export function PredictionChart({ data }: PredictionChartProps) {
           data={data}
           margin={{ top: 5, right: 20, left: 15, bottom: 5 }}
         >
-          {/* Definisikan gradasi warna untuk setiap area chart */}
           <defs>
             <linearGradient id="colorXgboost" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
@@ -74,7 +67,6 @@ export function PredictionChart({ data }: PredictionChartProps) {
             </linearGradient>
           </defs>
 
-          {/* Konfigurasi Sumbu X dengan INTERVAL */}
           <XAxis
             dataKey="date"
             tickLine={false}
@@ -82,12 +74,9 @@ export function PredictionChart({ data }: PredictionChartProps) {
             tickMargin={10}
             axisLine={false}
             tickFormatter={formatXAxisTick}
-            // --- INI BAGIAN PENTINGNYA ---
-            // Tampilkan sekitar 7 label saja biar tidak penuh
             interval={Math.floor(data.length / 7)}
           />
 
-          {/* Konfigurasi Sumbu Y */}
           <YAxis
             tickFormatter={formatYAxisLabel}
             tick={{ fontSize: 12 }}
@@ -96,7 +85,6 @@ export function PredictionChart({ data }: PredictionChartProps) {
             domain={["auto", "auto"]}
           />
 
-          {/* Tooltip yang informatif saat hover */}
           <Tooltip
             contentStyle={{
               backgroundColor: "rgba(255, 255, 255, 0.8)",
@@ -112,10 +100,8 @@ export function PredictionChart({ data }: PredictionChartProps) {
             formatter={(value, name) => [formatCurrency(value as number), name]}
           />
 
-          {/* Legenda untuk membedakan setiap garis */}
           <Legend />
 
-          {/* Area untuk XGBoost */}
           <Area
             type="monotone"
             dataKey="xgboost"
@@ -125,7 +111,6 @@ export function PredictionChart({ data }: PredictionChartProps) {
             strokeWidth={2}
             name="XGBoost"
           />
-          {/* Area untuk LightGBM */}
           <Area
             type="monotone"
             dataKey="lightgbm"
@@ -135,7 +120,6 @@ export function PredictionChart({ data }: PredictionChartProps) {
             strokeWidth={2}
             name="LightGBM"
           />
-          {/* Area untuk CatBoost */}
           <Area
             type="monotone"
             dataKey="catboost"

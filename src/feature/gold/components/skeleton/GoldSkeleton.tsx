@@ -41,6 +41,7 @@ export const TableSkeleton = ({ rows = 10 }: { rows?: number }) => (
         </TableHead>
       </TableRow>
     </TableHeader>
+
     <TableBody>
       {Array.from({ length: rows }).map((_, i) => (
         <TableRow key={i}>

@@ -1,102 +1,261 @@
-import Image from "next/image";
+import { ArrowRight, Check, BarChart2, MapPin, Smartphone } from "lucide-react";
+import { Button } from "@/shared/shadcn-components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/shared/shadcn-components/ui/card";
+import Link from "next/link"; // Import Link dari Next.js
 
-export default function Home() {
+export default function LandingPage() {
+  const features = [
+    {
+      icon: <BarChart2 className="w-6 h-6" />,
+      title: "Prediksi Harga Harian Akurat",
+      description:
+        "Selalu selangkah di depan pasar dengan prediksi harga emas dan mayam harian yang tepat.",
+    },
+    {
+      icon: <BarChart2 className="w-6 h-6" />,
+      title: "Data Historis Komprehensif",
+      description:
+        "Analisis tren harga masa lalu untuk keputusan investasi yang lebih cerdas.",
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Harga Spesifik Tiap Kota",
+      description:
+        "Dapatkan harga presisi untuk Banda Aceh, Lhokseumawe, dan Langsa.",
+    },
+    {
+      icon: <Smartphone className="w-6 h-6" />,
+      title: "Antarmuka Ramah Pengguna",
+      description:
+        "Navigasi yang mudah dan fitur-fitur aplikasi yang intuitif.",
+    },
+  ];
+
+  const advantages = [
+    {
+      title: "Akurasi Prediksi Tingkat Tinggi",
+      description:
+        "Algoritma canggih kami memberikan prediksi terpercaya berdasarkan data pasar terkini.",
+    },
+    {
+      title: "Fokus Lokal Aceh",
+      description:
+        "Data khusus yang disesuaikan dengan kondisi pasar dan tren harga unik di Aceh.",
+    },
+    {
+      title: "Akses Mudah & Cepat",
+      description:
+        "Dapatkan informasi krusial kapan pun Anda butuhkan, dengan akses yang super cepat.",
+    },
+  ];
+
+  const steps = [
+    "Buka Aplikasi Aceh Gold & Mayam Forecast.",
+    "Pilih kota dan jenis logam (emas/mayam) yang ingin Anda prediksi.",
+    "Lihat prediksi harga dan buat keputusan investasi terbaik Anda!",
+  ];
+
+  const cityLinks = [
+    { name: "Banda Aceh", href: "/banda-aceh" },
+    { name: "Langsa", href: "/langsa" },
+    { name: "Lhokseumawe", href: "/lhokseumawe" },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen flex flex-col">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-primary to-primary/90 text-white py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Prediksi Harga Emas & Mayam Terkini di Aceh
+          </h1>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Dapatkan ramalan harga harian akurat untuk emas dan mayam di Banda
+            Aceh, Lhokseumawe, dan Langsa. Buat keputusan investasi cerdas
+            dengan mudah!
+          </p>
+          <div className="flex flex-col items-center space-y-4 md:flex-row md:space-x-4 md:space-y-0 justify-center">
+            <Button variant="outline" className="text-primary" asChild>
+              Coba Sekarang <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            <div className="flex flex-col md:flex-row space-y-2 md:space-x-2 md:space-y-0 mt-4 md:mt-0">
+              {" "}
+              {/* Tambahkan margin top di mobile */}
+              {cityLinks.map((city) => (
+                <Button
+                  key={city.name}
+                  variant="outline"
+                  className="text-primary"
+                  asChild
+                >
+                  <Link href={city.href}>Cek Prediksi {city.name}</Link>
+                </Button>
+              ))}
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Key Features */}
+      <section id="features" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Fitur Unggulan Kami
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="bg-primary/10 p-3 rounded-full w-fit">
+                    {feature.icon}
+                  </div>
+                  <CardTitle>{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Kenapa Memilih Aplikasi Kami?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {advantages.map((advantage, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
+                <div className="flex items-center mb-4">
+                  <Check className="text-primary mr-2" />
+                  <h3 className="text-xl font-semibold">{advantage.title}</h3>
+                </div>
+                <p className="text-gray-600">{advantage.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Bagaimana Cara Kerjanya?
+          </h2>
+          <div className="max-w-2xl mx-auto">
+            <ol className="space-y-4">
+              {steps.map((step, index) => (
+                <li key={index} className="flex items-start">
+                  <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">
+                    {index + 1}
+                  </div>
+                  <p className="text-lg">{step}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Diubah untuk akses publik */}
+      <section className="py-16 bg-primary text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">
+            Mulai Buat Keputusan Investasi Terbaik Anda!
+          </h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Akses prediksi harga emas dan mayam akurat di Aceh, kapan saja, di
+            mana saja, tanpa perlu mendaftar.
+          </p>
+          <Button variant="secondary" className="text-primary" asChild>
+            <Link href="/dashboard">
+              {" "}
+              {/* Asumsi link ke halaman utama aplikasi / dashboard */}
+              Akses Aplikasi Sekarang
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">
+                Aceh Gold & Mayam Forecast
+              </h3>
+              <p>Prediksi harga akurat untuk logam mulia di Aceh.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Link Cepat</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="hover:underline">
+                    Beranda
+                  </a>
+                </li>
+                <li>
+                  <a href="#features" className="hover:underline">
+                    Fitur
+                  </a>
+                </li>
+                <li>
+                  <a href="#how-it-works" className="hover:underline">
+                    Cara Kerja
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Perusahaan</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="hover:underline">
+                    Tentang Kami
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    Kontak
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    Karir
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Hukum</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="hover:underline">
+                    Kebijakan Privasi
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    Syarat & Ketentuan
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+            <p>© 2025 Rian Hidayatullah. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
   );

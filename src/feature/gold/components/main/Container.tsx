@@ -22,19 +22,19 @@ import {
 import { Skeleton } from "@/shared/shadcn-components/ui/skeleton";
 import { Alert, AlertDescription } from "@/shared/shadcn-components/ui/alert";
 
-import Chart from "./MainChart";
+import Chart from "./Chart";
 import YearFilter from "./YearFilter";
 
 import React, { useState, Suspense } from "react";
-import useGolds from "../hooks/useGolds";
-import GoldCardHeaderContent from "./GoldCardHeaderContent";
+import useGolds from "../../hooks/useGolds";
+import GoldCardHeaderContent from "./Header";
 import SummaryCards from "./SummaryCards";
-import GoldTable from "./MainTable";
+import GoldTable from "./Table";
 import {
   ChartSkeleton,
   SummaryCardsSkeleton,
   TableSkeleton,
-} from "./GoldSkeleton";
+} from "../skeleton/GoldSkeleton";
 
 class GoldPriceErrorBoundary extends React.Component<
   { children: React.ReactNode; onRetry?: () => void },
@@ -84,7 +84,7 @@ class GoldPriceErrorBoundary extends React.Component<
   }
 }
 
-const GoldPriceContent = ({
+const Content = ({
   selectedYear,
   onYearChange,
   mayamValue,
@@ -93,8 +93,6 @@ const GoldPriceContent = ({
   onYearChange: (year: string | null) => void;
   mayamValue: number;
 }) => {
-  const { chartData: allData } = useGolds({ limit: 0 }, null, mayamValue);
-
   const { chartData, metrics, isError, error } = useGolds(
     { limit: 0 },
     selectedYear,
@@ -107,16 +105,16 @@ const GoldPriceContent = ({
 
   const allYears = React.useMemo(() => {
     const yearsSet = new Set<string>();
-    allData.forEach((item: { time: string }) => {
+    chartData.forEach((item: { time: string }) => {
       const year = new Date(item.time).getFullYear().toString();
       yearsSet.add(year);
     });
-    return Array.from(yearsSet).sort((a, b) => parseInt(b) - parseInt(a)); // Sort descending (newest first)
-  }, [allData]);
+    return Array.from(yearsSet).sort((a, b) => parseInt(b) - parseInt(a));
+  }, [chartData]);
 
   React.useEffect(() => {
     if (selectedYear === null && allYears.length > 0) {
-      onYearChange(allYears[0]); // Select the most recent year
+      onYearChange(allYears[0]);
     }
   }, [selectedYear, allYears, onYearChange]);
 
@@ -222,7 +220,6 @@ const GoldPriceContent = ({
   );
 };
 
-// Main container component with Suspense
 export default function GoldPriceContainer({
   city,
   mayamValue,
@@ -230,7 +227,7 @@ export default function GoldPriceContainer({
   city: string;
   mayamValue: number;
 }) {
-  const [selectedYear, setSelectedYear] = useState<string | null>(null); // Start with null to let component choose the latest year
+  const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [retryKey, setRetryKey] = useState(0);
 
   const handleRetry = () => {
@@ -262,7 +259,7 @@ export default function GoldPriceContainer({
               </>
             }
           >
-            <GoldPriceContent
+            <Content
               selectedYear={selectedYear}
               onYearChange={setSelectedYear}
               mayamValue={mayamValue}
