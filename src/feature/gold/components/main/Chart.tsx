@@ -20,6 +20,11 @@ export function MainChart({ data }: MainChartProps) {
   const formatXAxisTick = (time: string) => {
     const [month, day, year] = time.split("/");
     const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+    if (data.length <= 12) {
+      return `${day}/${month}`;
+    }
+
     return date.toLocaleString("default", { month: "short", year: "numeric" });
   };
 
@@ -34,7 +39,7 @@ export function MainChart({ data }: MainChartProps) {
             tickMargin={10}
             axisLine={false}
             tickFormatter={formatXAxisTick}
-            interval={Math.ceil(data.length / 12)}
+            interval={data.length > 12 ? Math.floor(data.length / 12) : 0}
           />
           <YAxis
             tickFormatter={formatYAxisLabel}
@@ -66,7 +71,7 @@ export function MainChart({ data }: MainChartProps) {
             fillOpacity={0.4}
             stroke="#c52289"
             strokeWidth={2}
-            stackId={"a"}
+            stackId="a"
             dot={false}
           />
         </AreaChart>

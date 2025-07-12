@@ -28,7 +28,7 @@ import YearFilter from "./YearFilter";
 import React, { useState, Suspense } from "react";
 import useGolds from "../../hooks/useGolds";
 import GoldCardHeaderContent from "./Header";
-import SummaryCards from "./SummaryCards";
+import SummaryCardsContainer from "./SummaryCards";
 import GoldTable from "./Table";
 import {
   ChartSkeleton,
@@ -120,7 +120,7 @@ const Content = ({
 
   return (
     <>
-      <SummaryCards
+      <SummaryCardsContainer
         currentPrice={metrics?.currentPrice ?? 0}
         highPrice={metrics?.highPrice ?? 0}
         lowPrice={metrics?.lowPrice ?? 0}

@@ -4,8 +4,8 @@ import { CardTitle } from "@/shared/shadcn-components/ui/card";
 
 const GoldCardHeaderContent = ({ city }: { city: string }) => {
   return (
-    <CardTitle className="text-left text-4xl">
-      {city} Gold Price (IDR) per Mayam
+    <CardTitle className="text-left text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight">
+      Harga Emas (IDR) per Mayam Kota {city}
     </CardTitle>
   );
 };

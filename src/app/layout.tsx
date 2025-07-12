@@ -4,6 +4,7 @@ import Providers from "@/providers";
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/shared/atom/navbar";
+import Footer from "@/shared/atom/footer";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jaks",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
