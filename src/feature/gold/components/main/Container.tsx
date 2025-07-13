@@ -84,6 +84,8 @@ class GoldPriceErrorBoundary extends React.Component<
   }
 }
 
+// ... (imports)
+
 const Content = ({
   selectedYear,
   onYearChange,
@@ -93,30 +95,30 @@ const Content = ({
   onYearChange: (year: string | null) => void;
   mayamValue: number;
 }) => {
-  const { chartData, metrics, isError, error } = useGolds(
-    { limit: 0 },
+  // --- PERBAIKAN DI SINI ---
+  // Sekarang, kita juga mendestrukturisasi 'allYears' dari useGolds hook
+  const { chartData, metrics, isError, error, allYears } = useGolds(
+    { limit: 0 }, // Ini tetap seperti sebelumnya, pastikan getGolds mengembalikan semua data
     selectedYear,
     mayamValue
   );
+  // --- END PERBAIKAN ---
 
   if (isError && error) {
     throw error;
   }
 
-  const allYears = React.useMemo(() => {
-    const yearsSet = new Set<string>();
-    chartData.forEach((item: { time: string }) => {
-      const year = new Date(item.time).getFullYear().toString();
-      yearsSet.add(year);
-    });
-    return Array.from(yearsSet).sort((a, b) => parseInt(b) - parseInt(a));
-  }, [chartData]);
-
-  React.useEffect(() => {
-    if (selectedYear === null && allYears.length > 0) {
-      onYearChange(allYears[0]);
-    }
-  }, [selectedYear, allYears, onYearChange]);
+  // --- PERBAIKAN DI SINI ---
+  // Hapus useMemo 'allYears' dari sini karena sudah dihitung di hook useGolds
+  // const allYears = React.useMemo(() => {
+  //   const yearsSet = new Set<string>();
+  //   chartData.forEach((item: { time: string }) => {
+  //     const year = new Date(item.time).getFullYear().toString();
+  //     yearsSet.add(year);
+  //   });
+  //   return Array.from(yearsSet).sort((a, b) => parseInt(b) - parseInt(a));
+  // }, [chartData]);
+  // --- END PERBAIKAN ---
 
   return (
     <>
@@ -192,6 +194,7 @@ const Content = ({
                 close: String(item.close),
                 open: String(item.open),
               }))}
+              selectedYear={selectedYear} // <-- PASS PROP INI KE CHART!
             />
           </Suspense>
         </TabsContent>
@@ -237,11 +240,11 @@ export default function GoldPriceContainer({
   return (
     <GoldPriceErrorBoundary onRetry={handleRetry}>
       <Card className="dark:bg-zinc-900 bg-slate-50 mb-8 pt-10 shadow-none border-0">
-        <CardHeader>
+        <CardHeader className="p-0 m-0">
           <GoldCardHeaderContent city={city} />
         </CardHeader>
 
-        <CardContent>
+        <CardContent className="p-0 m-0">
           <Suspense
             key={`${selectedYear}-${retryKey}`}
             fallback={

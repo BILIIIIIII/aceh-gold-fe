@@ -32,12 +32,24 @@ const useGolds = (
       open: parseIDRValue(item.open),
     }));
 
-    const filtered = selectedYear
+    // --- PERBAIKAN DI SINI ---
+    // Hitung semua tahun yang tersedia dari rawData (data mentah, sebelum filter tahun)
+    const allPossibleYearsSet = new Set<string>();
+    rawData.forEach((item) => {
+      const year = new Date(item.time).getFullYear().toString();
+      allPossibleYearsSet.add(year);
+    });
+    const allPossibleYears = Array.from(allPossibleYearsSet).sort(
+      (a, b) => parseInt(b) - parseInt(a)
+    ); // Urutkan dari terbaru ke terlama
+    // --- END PERBAIKAN ---
+
+    const filtered = selectedYear // Filter data berdasarkan selectedYear
       ? rawData.filter(
           (item) =>
             new Date(item.time).getFullYear().toString() === selectedYear
         )
-      : rawData;
+      : rawData; // Jika selectedYear null, gunakan semua data
 
     const sorted = [...filtered].sort(
       (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
@@ -48,6 +60,8 @@ const useGolds = (
       close: item.close * mayam,
       open: item.open * mayam,
     }));
+
+    // console.log(chartData); // Log ini sekarang akan menunjukkan data yang difilter
 
     if (chartData.length === 0) {
       return {
@@ -60,6 +74,7 @@ const useGolds = (
           absoluteChange: 0,
           percentChange: 0,
         },
+        allYears: allPossibleYears, // Sertakan allPossibleYears di sini
       };
     }
 
@@ -85,12 +100,14 @@ const useGolds = (
         absoluteChange,
         percentChange,
       },
+      allYears: allPossibleYears, // Sertakan allPossibleYears di sini
     };
   }, [GoldsResponses?.data, selectedYear, mayam]);
 
   return {
     chartData: processed.chartData,
     metrics: processed.metrics,
+    allYears: processed.allYears, // Ekspor allYears dari hook
     isError,
     error,
   };
