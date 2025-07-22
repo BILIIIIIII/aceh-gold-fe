@@ -49,20 +49,24 @@ const SummaryCards = ({
             </div>
           </div>
         ) : isHigh ? (
-          <div className="flex items-baseline gap-2">
+          <div className="flex justify-between items-baseline gap-2">
             <span className="text-xs text-slate-400">{title}</span>
-            <span className="text-base text-slate-600">
-              {formattedHighPrice}
-            </span>
-            <sub className="text-xs text-slate-500">IDR</sub>
+            <div>
+              <span className="text-base text-slate-600">
+                {formattedHighPrice}
+              </span>
+              <sub className="text-[8px] text-slate-500">IDR</sub>
+            </div>
           </div>
         ) : isLow ? (
-          <div className="flex items-baseline gap-2">
+          <div className="flex justify-between items-baseline gap-2 w-full">
             <span className="text-xs text-slate-400">{title}</span>
-            <span className="text-base text-slate-600">
-              {formattedLowPrice}
-            </span>
-            <sub className="text-xs text-slate-500">IDR</sub>
+            <div>
+              <span className="text-base text-slate-600">
+                {formattedLowPrice}
+              </span>
+              <sub className="text-[8px] text-slate-500">IDR</sub>
+            </div>
           </div>
         ) : (
           <div className="flex items-baseline gap-1">
@@ -115,7 +119,7 @@ const SummaryCardsContainer = ({
       </article>
 
       <article className="w-full sm:w-auto">
-        <div className="flex flex-row sm:flex-col gap-2 sm:items-end">
+        <div className="w-full flex flex-row  sm:flex-col gap-2 ">
           <SummaryCards
             title="High"
             lowPrice={lowPrice}

@@ -9,7 +9,7 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import { formatYAxisLabel } from "../../lib/utils";
+import { formatYAxisLabel } from "@/shared/utils/helper";
 import { Gold } from "../../types/gold";
 import { useIsMobile } from "@/shared/hooks/use-mobile";
 
@@ -146,7 +146,7 @@ export function MainChart({ data, selectedYear }: MainChartProps) {
   const tickValues = tickIndexes.map((i) => data[i]?.time).filter(Boolean);
 
   return (
-    <section className="h-[400px] mb-16">
+    <section className="h-[500px]  mb-16 ">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data} margin={{ top: 20, bottom: 5 }}>
           <XAxis

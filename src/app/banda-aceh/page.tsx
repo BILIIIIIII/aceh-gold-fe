@@ -20,7 +20,7 @@ export default function Home() {
       <main className="w-full min-h-screen max-w-[1000px] mx-auto p-4 pb-10 flex flex-col gap-8">
         <Suspense
           fallback={
-            <>
+            <>  
               <SummaryCardsSkeleton />
               <hr className="my-4" />
               <ChartSkeleton />

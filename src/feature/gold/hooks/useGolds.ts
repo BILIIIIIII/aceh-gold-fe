@@ -6,7 +6,7 @@ import type { ApiResponse } from "../types/apiResponse";
 import { GoldQueryParams } from "../types/goldQueryParams";
 import { Gold } from "../types/gold";
 import { useMemo } from "react";
-import { parseIDRValue } from "../lib/utils";
+import { parseIDRValue } from "@/shared/utils/helper";
 
 const useGolds = (
   params: GoldQueryParams,

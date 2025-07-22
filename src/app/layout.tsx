@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${plusJakartaSans.variable} font-sans antialiased  bg-slate-50 text-slate-900 dark:bg-zinc-900 dark:text-white transition-colors duration-200`}
+        className={`${plusJakartaSans.variable} font-sans antialiased  bg-background text-slate-900 dark:text-white transition-colors duration-200`}
       >
         <Providers>
           <Navbar />

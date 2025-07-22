@@ -239,7 +239,7 @@ export default function GoldPriceContainer({
 
   return (
     <GoldPriceErrorBoundary onRetry={handleRetry}>
-      <Card className="dark:bg-zinc-900 bg-slate-50 mb-8 pt-10 shadow-none border-0">
+      <Card className=" mb-8 mt-16 shadow-none border-0 bg-transparent">
         <CardHeader className="p-0 m-0">
           <GoldCardHeaderContent city={city} />
         </CardHeader>

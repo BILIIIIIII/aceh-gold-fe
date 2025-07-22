@@ -1,7 +1,7 @@
 "use client";
 
-import { ThemeProvider } from "@/context/ThemeContext";
 import ReactQueryProvider from "./ReactQueryProvider";
+import { ThemeProvider } from "./ThemeProvider";
 
 interface ProvidersProps {
   children: React.ReactNode;

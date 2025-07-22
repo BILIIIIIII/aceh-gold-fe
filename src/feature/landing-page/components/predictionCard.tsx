@@ -18,8 +18,8 @@ export function PredictionCard({
   isLoading,
 }: PredictionCardProps) {
   return (
-    <div className="flex  justify-center w-full border-l p-6">
-      <Card className="w-fit  border-0 outline-none rounded-none shadow-none gap-0 p-0 m-0 bg-transparent">
+    <div className="flex items-center justify-center w-full border-t ">
+      <Card className="w-fit  border-none outline-none rounded-none shadow-none gap-0 px-0 py-8 m-0 ">
         <CardHeader className="p-0 m-0 gap-0">
           <CardTitle className="p-0 m-0 text-xs text-muted-foreground font-normal">
             {title}
@@ -29,7 +29,7 @@ export function PredictionCard({
           {isLoading ? (
             <Skeleton className="h-6 w-24" />
           ) : (
-            <span className="text-lg font-black">{value}</span>
+            <span className="text-2xl font-black">{value}</span>
           )}
         </CardContent>
       </Card>
