@@ -35,14 +35,10 @@ interface PredictionChartProps {
   lines: LineConfig[];
 }
 
-// PERBAIKAN 1: Definisikan tipe data untuk props CustomTooltip
-// Kita menggunakan TooltipProps dari recharts dan menambahkannya dengan prop 'lines' kita sendiri.
 type CustomTooltipProps = TooltipProps<number, string> & {
   lines: LineConfig[];
 };
 
-// --- KOMPONEN TOOLTIP KUSTOM ---
-// PERBAIKAN 2: Gunakan tipe CustomTooltipProps yang sudah didefinisikan
 const CustomTooltip = ({
   active,
   payload,
@@ -67,7 +63,6 @@ const CustomTooltip = ({
         <div className="my-1.5 h-px bg-muted" />
         <div className="space-y-2">
           {lines.map((line: LineConfig) => {
-            // Error 'any' pada 'p' di sini juga akan hilang karena 'payload' sudah memiliki tipe yang benar.
             const cityData = payload.find((p) => p.dataKey === line.key);
             if (!cityData) return null;
 
@@ -98,7 +93,6 @@ const CustomTooltip = ({
   return null;
 };
 
-// --- KOMPONEN CHART UTAMA (Tidak ada perubahan di sini) ---
 export function PredictionChart({ data, lines }: PredictionChartProps) {
   const chartConfig = React.useMemo(() => {
     const config: ChartConfig = {};

@@ -44,8 +44,8 @@ function Navbar() {
               className={cn(
                 "transition-colors hover:text-foreground/80 text-[10px] hover:border-b border-slate-500",
                 pathname === link.href
-                  ? "text-slate-500 "
-                  : "text-slate-500/40 "
+                  ? "text-slate-400 "
+                  : "text-slate-500/90 "
               )}
             >
               {link.name}
